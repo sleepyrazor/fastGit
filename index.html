@@ -15,22 +15,57 @@
     <h1>FastGit</h1>
     <h2>Use GitHub like a pro in minutes</h2>
     <div class="botones">
-        <boton class="download">Download</boton>
-        <boton class="upload">Upload</boton>
+        <boton onclick="download()" id="download" class="download">Download</boton>
+        <boton onclick="upload()" id="upload" class="upload">Upload</boton>
     </div>
-    <div class="download-explained"></div>
+    <div id="download-explained" class="download-explained">
+        <boton class="boton"><</boton>
+        <p>git init</p>
+        <p>git add .</p>
+        <p>git commit -m "first commit"</p>
+        <p>git remote add origin https://github.com/NOMBRE_USUARIO/NOMBRE_PROYECTO.git</p>
+        <p>git push -u origin master</p>
+    </div>
+    <div id="upload-explained" class="upload-explained">
+        <boton class="boton"><</boton>
+        <p>git init</p>
+        <p>git add .</p>
+        <p>git commit -m "first commit"</p>
+        <p>git remote add origin https://github.com/NOMBRE_USUARIO/NOMBRE_PROYECTO.git</p>
+        <p>git push -u origin master</p>
+    </div>
     
 
     <script>
-        function showDownload(){
-            showDownload = true;
-            showUpload = false;
+        var downloadButton = document.getElementById('download-explained');
+        var uploadButton = document.getElementById('upload-explained');
+        uploadButton.style.display="none";
+        downloadButton.style.display="none";
 
 
+
+        function download(){
+            console.log(downloadButton.style.display);
+            if(downloadButton.style.display=="none"){
+                downloadButton.style.display = "block";
+                console.log(downloadButton.style.display);
+                uploadButton.style.display = "none";
+            }else {
+                downloadButton.style.display="none";
+                uploadButton.style.display = "block";
+            }
         }
+        function upload(){
+            if(uploadButton.style.display=="none"){
+                uploadButton.style.display = "block";
+                downloadButton.style.display = "none";
+            }else {
+                uploadButton.style.display="none";
+                downloadButton.style.display = "block";
+            }
+        }
+
         
-        var showDownload = false;
-        var showUpload = false;
 
     </script>
 </body>
