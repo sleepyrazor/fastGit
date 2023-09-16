@@ -37,31 +37,34 @@
     
 
     <script>
-        var downloadButton = document.getElementById('download-explained');
-        var uploadButton = document.getElementById('upload-explained');
-        uploadButton.style.display="none";
-        downloadButton.style.display="none";
+        var downloadButton = document.getElementById('download');
+        var uploadButton = document.getElementById('upload');
+        var downloadText = document.getElementById('download-explained');
+        var uploadText = document.getElementById('upload-explained');
+        uploadText.style.display="none";
+        downloadText.style.display="none";
 
 
 
         function download(){
-            console.log(downloadButton.style.display);
-            if(downloadButton.style.display=="none"){
-                downloadButton.style.display = "block";
-                console.log(downloadButton.style.display);
-                uploadButton.style.display = "none";
+            
+            downloadButton.style.display="none";
+            if(downloadText.style.display=="none"){
+                downloadText.style.display = "block";
+                uploadText.style.display = "none";
             }else {
-                downloadButton.style.display="none";
-                uploadButton.style.display = "block";
+                downloadText.style.display="none";
+                uploadText.style.display = "block";
             }
         }
         function upload(){
-            if(uploadButton.style.display=="none"){
-                uploadButton.style.display = "block";
-                downloadButton.style.display = "none";
+            uploadButton.style.display="none";
+            if(uploadText.style.display=="none"){
+                uploadText.style.display = "block";
+                downloadText.style.display = "none";
             }else {
-                uploadButton.style.display="none";
-                downloadButton.style.display = "block";
+                uploadText.style.display="none";
+                downloadText.style.display = "block";
             }
         }
 

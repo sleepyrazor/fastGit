@@ -99,6 +99,9 @@ boton.boton {
     height: 30px;
     width: 30px;
     transition: width 1s;
-    
 
+
+}
+boton.boton:hover{
+    cursor: pointer;
 }
