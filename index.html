@@ -12,29 +12,49 @@
     </style>
 </head>
 <body>
-    <h1>FastGit</h1>
+    <h1><span style="color: #cdb4db;">Fast</span><span style="color: #a2d2ff;">Git</span></h1>
     <h2>Use GitHub like a pro in minutes</h2>
     <div class="botones">
-        <boton onclick="download()" id="download" class="download">Download</boton>
-        <boton onclick="upload()" id="upload" class="upload">Upload</boton>
+
+        <boton onclick="" id="download" class="download">Download</boton>
+        <boton onclick="" id="upload" class="upload">Upload</boton>
+
+
     </div>
     <div id="download-explained" class="download-explained">
-        <boton class="boton"><</boton>
-        <p>git init</p>
-        <p>git add .</p>
-        <p>git commit -m "first commit"</p>
-        <p>git remote add origin https://github.com/NOMBRE_USUARIO/NOMBRE_PROYECTO.git</p>
-        <p>git push -u origin master</p>
+        <boton onclick="aparecerBolas()" class="back"><</boton>
+
+        <p style="margin-right: 3.5em;">Inicializamos el repo</p>
+        <p class="code">git init</p>
+        <p>Añadimos el contenido de la carpeta actual</p>
+        <p class="code">git add .</p>
+        <p>Comentamos los cambios mediante un commit</p>
+        <p class="code">git commit -m "first commit"</p>
+        <p>Añadimos (solo la primera vez) el repositorio de la nube</p>
+        <p class="code">git remote add origin https://github.com/NOMBRE_USUARIO/NOMBRE_PROYECTO.git</p>
+        <p>Subimos el contenido del repositorio local a un repositorio central</p>
+        <p>Aclaración del -u, lo usamos para que la rama remota "reconozca" la rama local y así en futuros push, o pulls, no haya que especificar la rama, simplemente usaremos git push</p>
+        <p class="code">git push -u origin master</p>
+        <button onclick="copyToClipboardDownload()" id="clipboard" class="clipboard">📋</button>
     </div>
     <div id="upload-explained" class="upload-explained">
-        <boton class="boton"><</boton>
-        <p>git init</p>
-        <p>git add .</p>
-        <p>git commit -m "first commit"</p>
-        <p>git remote add origin https://github.com/NOMBRE_USUARIO/NOMBRE_PROYECTO.git</p>
-        <p>git push -u origin master</p>
+        <boton onclick="aparecerBolas()" class="back"><</boton>
+        <p style="margin-right: 3.5em;">Creamos una branch nueva</p>
+        <p class="code">git branch nombre</p>
+        <p>Unimos la branch nueva con la main</p>
+        <p class="code">git merge nombreRama</p>
+        <p>Una vez hecho esto, ya estarían subidos los cambios. Ahora solo faltaría que los demás se descargaran
+            los cambios mediante un fetch.
+        </p>
+        <p class="code">git fetch branch</p>
+        
+        <button onclick="copyToClipboardUpload()" id="clipboard2" class="clipboard">📋</button>
     </div>
     
+    <p class="byMe">made by <hi>sleepyrazor</hi></p>
+
+
+
 
     <script>
         var downloadButton = document.getElementById('download');
@@ -44,11 +64,20 @@
         uploadText.style.display="none";
         downloadText.style.display="none";
 
-
+        function desaparecerBolas(){
+            downloadButton.style.display="none";
+            uploadButton.style.display="none";
+        }
+        function aparecerBolas(){
+            downloadButton.style.display="inline-block";
+            uploadButton.style.display="inline-block";
+            uploadText.style.display = "none";
+            downloadText.style.display = "none";
+        }
 
         function download(){
             
-            downloadButton.style.display="none";
+            desaparecerBolas();
             if(downloadText.style.display=="none"){
                 downloadText.style.display = "block";
                 uploadText.style.display = "none";
@@ -58,7 +87,7 @@
             }
         }
         function upload(){
-            uploadButton.style.display="none";
+            desaparecerBolas();
             if(uploadText.style.display=="none"){
                 uploadText.style.display = "block";
                 downloadText.style.display = "none";
@@ -67,8 +96,40 @@
                 downloadText.style.display = "block";
             }
         }
+        document.addEventListener("DOMContentLoaded", function(){
+            downloadButton.addEventListener("click", function () {
+                downloadButton.style.animationPlayState = "running";
+                setTimeout(function () {
+                    download();
+                    downloadButton.style.animationPlayState = "paused";
+                }, 480);
+                
+            })
+        })
+        document.addEventListener("DOMContentLoaded", function(){
+            uploadButton.addEventListener("click", function () {
+                uploadButton.style.animationPlayState = "running";
+                setTimeout(function () {
+                    upload();
+                    uploadButton.style.animationPlayState = "paused";
+                }, 480);
+                
+            })
+        })
 
-        
+        function copyToClipboardDownload(){
+            let str = 'git init\n'+'git commit -m "first commit"\n'+'git remote add origin';
+            var clip = document.getElementById('clipboard');
+            navigator.clipboard.writeText(str)
+            clip.style.backgroundColor = "rgb(57, 255, 70)";
+        }
+
+        function copyToClipboardUpload(){
+            let str = 'git branch newBranch\n'+'git merge newBranch\n';
+            var clip = document.getElementById('clipboard2');
+            navigator.clipboard.writeText(str)
+            clip.style.backgroundColor = "rgb(57, 255, 70)";
+        }
 
     </script>
 </body>
